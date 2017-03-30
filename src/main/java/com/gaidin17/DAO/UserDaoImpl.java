@@ -3,6 +3,7 @@ package com.gaidin17.DAO;
 import com.gaidin17.domain.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,5 +11,11 @@ import java.util.Set;
  */
 @Component
 public class UserDaoImpl implements UserDao {
-    private Set<User> users;
+    private List<User> users;
+
+    @Override
+    public List<User> getUsers() {
+        return users;
+    }
+
 }

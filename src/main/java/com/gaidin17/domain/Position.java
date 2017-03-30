@@ -6,6 +6,13 @@ package com.gaidin17.domain;
 public class Position {
     private float xCoord;
     private float yCoord;
+    private long positionTime;
+
+    public Position(float xCoord, float yCoord, long positionTime) {
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+        this.positionTime = positionTime;
+    }
 
     public float getxCoord() {
         return xCoord;
@@ -21,5 +28,22 @@ public class Position {
 
     public void setyCoord(float yCoord) {
         this.yCoord = yCoord;
+    }
+
+    public long getPositionTime() {
+        return positionTime;
+    }
+
+    public void setPositionTime(long positionTime) {
+        this.positionTime = positionTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "xCoord=" + xCoord +
+                ", yCoord=" + yCoord +
+                ", positionTime=" + positionTime +
+                '}';
     }
 }
