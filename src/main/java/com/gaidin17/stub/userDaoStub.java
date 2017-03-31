@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Evgeny_Akulenko on 3/30/2017.
  */
-@Primary
+
 @Component
 public class userDaoStub implements UserDao {
     private static int conut = 10;
@@ -36,7 +36,7 @@ public class userDaoStub implements UserDao {
 
     private User createFakeUser(int count) {
         User user = null;
-        user = new User(count);
+        user = new User(count, "test");
         Position position = new Position(1f + (float) Math.random() * 10, 1f + (float) Math.random() * 10, new Date().getTime());
         user.setCurrentPosition(position);
         return user;
@@ -45,5 +45,20 @@ public class userDaoStub implements UserDao {
     @Override
     public List<User> getUsers() {
         return users;
+    }
+
+    @Override
+    public User createUser(String name) {
+        return null;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return null;
+    }
+
+    @Override
+    public void removeUserById(int id) {
+
     }
 }

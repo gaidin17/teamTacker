@@ -54,6 +54,18 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://212.109.218.230:9999/manager/text</url>
+                    <server>40CdoTomcat</server>
+                    <username>gaidin</username>
+                    <password>T2o3C6w5</password>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

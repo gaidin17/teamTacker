@@ -9,4 +9,10 @@ import java.util.List;
  */
 public interface UserDao {
     List<User> getUsers();
+
+    User createUser(String name);
+
+    User getUserById(int id);
+
+    void removeUserById(int id);
 }
