@@ -1,12 +1,8 @@
 package com.gaidin17.stub;
 
 import com.gaidin17.DAO.UserDao;
-import com.gaidin17.domain.Operation;
-import com.gaidin17.domain.Path;
 import com.gaidin17.domain.Position;
 import com.gaidin17.domain.User;
-import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -36,7 +32,7 @@ public class userDaoStub implements UserDao {
 
     private User createFakeUser(int count) {
         User user = null;
-        user = new User(count, "test");
+        user = new User(count, "test", "sadfasd");
         Position position = new Position(1f + (float) Math.random() * 10, 1f + (float) Math.random() * 10, new Date().getTime());
         user.setCurrentPosition(position);
         return user;
@@ -48,7 +44,7 @@ public class userDaoStub implements UserDao {
     }
 
     @Override
-    public User createUser(String name) {
+    public User createUser(String name, String deviceId) {
         return null;
     }
 
@@ -60,5 +56,10 @@ public class userDaoStub implements UserDao {
     @Override
     public void removeUserById(int id) {
 
+    }
+
+    @Override
+    public User getUserByDeviceId(String deviceId) {
+        return null;
     }
 }

@@ -39,8 +39,14 @@ public class UserService {
         return userDao.getUserById(id);
     }
 
-    public User createUser(String name) {
-        return userDao.createUser(name);
+
+    public User createUser(String name, String deviceId) {
+
+        return userDao.createUser(name, deviceId);
+    }
+
+    public User getUserByDeviceId(String deviceId) {
+        return userDao.getUserByDeviceId(deviceId);
     }
 
     public void removeUserById(int id) {
@@ -48,9 +54,11 @@ public class UserService {
     }
 
     public void updateUserposition(int id, float x, float y, long time) {
-        User user  = userDao.getUserById(id);
-        user.getCurrentPosition().setxCoord(x);
-        user.getCurrentPosition().setyCoord(y);
-        user.getCurrentPosition().setPositionTime(time);
+        User user = userDao.getUserById(id);
+        if (user != null) {
+            user.getCurrentPosition().setxCoord(x);
+            user.getCurrentPosition().setyCoord(y);
+            user.getCurrentPosition().setPositionTime(time);
+        }
     }
 }

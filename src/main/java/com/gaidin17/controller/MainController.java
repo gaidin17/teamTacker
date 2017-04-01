@@ -1,6 +1,6 @@
 package com.gaidin17.controller;
 
-import com.gaidin17.DAO.UserDao;
+
 import com.gaidin17.domain.User;
 import com.gaidin17.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @RestController
 public class MainController {
-    private String testQuery = "pid=18&px=1233124.21&py=1443224.99&ptime=32489723";
+    private String testQuery = "pid=18&lat=1233124.21&lon=1443224.99&time=32489723";
     private UserService userService;
 
     @Autowired
@@ -23,22 +23,24 @@ public class MainController {
         this.userService = userService;
     }
 
-    @RequestMapping("/cdo")
-    public String getAndUpdatePositions(@RequestParam("pid") int pid, @RequestParam("px") float px, @RequestParam("py") float py, @RequestParam("ptime") long ptime) {
-        userService.updateUserposition(pid, px, py, ptime);
+    @RequestMapping("/position")
+    public List<User> getAndUpdatePositions(@RequestParam("pid") int pid, @RequestParam("lat") float lat, @RequestParam("lon") float lon, @RequestParam("time") long time) {
+        userService.updateUserposition(pid, lat, lon, time);
         List<User> users = userService.getUsersExceptId(pid);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (User user : users) {
-            stringBuilder.append(user.getCurrentPosition());
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
+        return users;
     }
 
-    @RequestMapping("/create")
-    public String initialiseUser(@RequestParam("name") String name, @RequestParam("px") float px, @RequestParam("py") float py, @RequestParam("ptime") long ptime) {
-        User user = userService.createUser(name);
-        userService.updateUserposition(user.getUserId(), px, py, ptime);
-        return user.toString();
+    @RequestMapping("/auth")
+    public int initialiseUser(@RequestParam("name") String name, @RequestParam("deviceId") String deviceId) {
+        User user = userService.getUserByDeviceId(deviceId);
+        if (user == null) {
+            user = userService.createUser(name, deviceId);
+        }
+        return user.getUserId();
+    }
+
+    @RequestMapping("/getAll")
+    public List<User> initialiseUser() {
+        return userService.getAllUsers();
     }
 }

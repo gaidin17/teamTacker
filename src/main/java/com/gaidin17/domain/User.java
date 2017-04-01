@@ -1,5 +1,8 @@
 package com.gaidin17.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,16 +11,34 @@ import java.util.List;
  */
 
 public class User {
+
+    @JsonIgnore
     private int userId;
+
+    @JsonIgnore
+    private String deviceId;
     private String name;
+
+    @JsonProperty("position")
     private Position currentPosition;
+    @JsonIgnore
     private List<Path> userPaths;
 
-    public User(int userId, String name) {
+    public User(int userId, String name, String deviceId) {
         this.userId = userId;
         this.name = name;
+        this.deviceId = deviceId;
         this.userPaths = new ArrayList<>();
         this.currentPosition = new Position(0, 0, 0);
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public int getUserId() {

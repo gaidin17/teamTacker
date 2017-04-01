@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Evgeny_Akulenko on 3/30/2017.
@@ -34,12 +33,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User createUser(String name) {
-        int id = idCreatorService.generateId();
-        User newUser = new User(id, name);
+    public User createUser(String name, String deviceId) {
+        int id = IdCreatorService.generateId();
+        User newUser = new User(id, name, deviceId);
         users.add(newUser);
         logger.debug("Был создан пользователем с id = {0} и именем {1}", id, name);
         return newUser;
+    }
+
+    @Override
+    public User getUserByDeviceId(String deviceId) {
+        for (User user : users) {
+            if (user.getDeviceId().equals(deviceId)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     @Override
