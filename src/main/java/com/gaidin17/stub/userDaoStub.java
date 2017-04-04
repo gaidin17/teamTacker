@@ -54,12 +54,17 @@ public class userDaoStub implements UserDao {
     }
 
     @Override
-    public void removeUserById(int id) {
-
+    public boolean removeUserById(int id) {
+        return false;
     }
 
     @Override
     public User getUserByDeviceId(String deviceId) {
+        return null;
+    }
+
+    @Override
+    public User getUserByName(String name) {
         return null;
     }
 }

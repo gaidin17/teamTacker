@@ -62,15 +62,25 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void removeUserById(int id) {
+    public boolean removeUserById(int id) {
         for (User user : users) {
             if (user.getUserId() == id) {
                 users.remove(user);
                 logger.debug("Был удален пользователем с id = {0}", id);
-                return;
+                return true;
             }
         }
         logger.debug("Удаление не произошло: Пользователя с id = {0} не было найдено ", id);
+        return false;
     }
 
+    @Override
+    public User getUserByName(String name) {
+        for (User user : users) {
+            if (user.getName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
 }

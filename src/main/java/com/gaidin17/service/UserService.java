@@ -49,8 +49,8 @@ public class UserService {
         return userDao.getUserByDeviceId(deviceId);
     }
 
-    public void removeUserById(int id) {
-        userDao.removeUserById(id);
+    public boolean removeUserById(int id) {
+        return userDao.removeUserById(id);
     }
 
     public void updateUserposition(int id, float x, float y, long time) {
@@ -60,5 +60,9 @@ public class UserService {
             user.getCurrentPosition().setyCoord(y);
             user.getCurrentPosition().setPositionTime(time);
         }
+    }
+
+    public boolean isUserNameExist(String name) {
+        return  userDao.getUserByName(name) != null;
     }
 }

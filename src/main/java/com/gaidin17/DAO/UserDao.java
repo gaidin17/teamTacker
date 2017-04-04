@@ -16,5 +16,7 @@ public interface UserDao {
 
     User getUserByDeviceId(String deviceId);
 
-    void removeUserById(int id);
+    boolean removeUserById(int id);
+
+    User getUserByName(String name);
 }
