@@ -59,7 +59,7 @@ public class MainController {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     class TheSameUserNameException extends RuntimeException {
         public TheSameUserNameException(String name) {
-            super("Пользователь с именем '" + name + "'уже есть");
+            super("User with name '" + name + "' is already exist");
         }
     }
 }
