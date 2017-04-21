@@ -39,7 +39,6 @@ public class UserService {
         return userDao.getUserById(id);
     }
 
-
     public User createUser(String name, String deviceId) {
 
         return userDao.createUser(name, deviceId);
@@ -62,7 +61,16 @@ public class UserService {
         }
     }
 
+    public boolean updateStatus(int id, String status) {
+        User user = userDao.getUserById(id);
+        if (user != null) {
+            user.setStatus(status);
+            return true;
+        }
+        return false;
+    }
+
     public boolean isUserNameExist(String name) {
-        return  userDao.getUserByName(name) != null;
+        return userDao.getUserByName(name) != null;
     }
 }

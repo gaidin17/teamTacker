@@ -18,6 +18,7 @@ public class User {
     @JsonIgnore
     private String deviceId;
     private String name;
+    private String status;
 
     @JsonProperty("position")
     private Position currentPosition;
@@ -29,6 +30,7 @@ public class User {
         this.name = name;
         this.deviceId = deviceId;
         this.userPaths = new ArrayList<>();
+        this.status = "";
         this.currentPosition = new Position(0, 0, 0);
     }
 
@@ -71,6 +73,14 @@ public class User {
 
     public void setCurrentPosition(Position currentPosition) {
         this.currentPosition = currentPosition;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
 

@@ -26,12 +26,21 @@ public class MainController {
     }
 
     @RequestMapping("/position")
-    public List<User> getAndUpdatePositions(@RequestParam("pid") int pid, @RequestParam("lat") float lat, @RequestParam("lon") float lon, @RequestParam("time") long time) {
+    public List<User> getAndUpdatePositions(@RequestParam("pid") int pid,
+                                            @RequestParam("lat") float lat,
+                                            @RequestParam("lon") float lon,
+                                            @RequestParam("time") long time) {
         if (lat != 0 && lon != 0) {
             userService.updateUserposition(pid, lat, lon, time);
         }
         List<User> users = userService.getUsersExceptId(pid);
         return users;
+    }
+
+    @RequestMapping("/status")
+    public boolean updateStatus(@RequestParam("pid") int pid, @RequestParam("status") String status) {
+
+        return !status.isEmpty() && userService.updateStatus(pid, status);
     }
 
     @RequestMapping("/auth")
@@ -58,7 +67,7 @@ public class MainController {
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
     class TheSameUserNameException extends RuntimeException {
-        public TheSameUserNameException(String name) {
+        TheSameUserNameException(String name) {
             super("User with name '" + name + "' is already exist");
         }
     }
